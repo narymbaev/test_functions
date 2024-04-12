@@ -2,6 +2,8 @@ import locale
 
 from sanic import Sanic, response
 
+from api import api_bp
+
 
 class App(Sanic):
 
@@ -29,3 +31,8 @@ async def before_server_start(_app, _loop):
 @app.before_server_stop
 async def before_server_stop(_app, _loop):
     app.purge_tasks()
+
+
+app.blueprint([
+    api_bp
+])
